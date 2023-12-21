@@ -61,3 +61,52 @@ if __name__ == "__main__":
 
 
 # For task 4, I did not understand so I used chat gtp to help out
+
+
+# Task 5
+
+import sys
+
+def process_temperatures(temperatures):
+    if not temperatures:
+        print("No temperatures provided. Please enter temperature values.")
+        return
+
+    temperatures = list(map(float, temperatures))
+    max_temp = max(temperatures)
+    min_temp = min(temperatures)
+    mean_temp = sum(temperatures) / len(temperatures)
+
+    print(f"Maximum Temperature: {max_temp}")
+    print(f"Minimum Temperature: {min_temp}")
+    print(f"Mean Temperature: {mean_temp}")
+
+if __name__ == "__main__":
+    command_line_arguments = sys.argv[1:]
+    process_temperatures(command_line_arguments)
+
+
+# Task 6
+
+import sys
+import shutil
+
+
+def create_backup(original_file):
+    try:
+        backup_file = original_file + ".bak"
+
+        shutil.copy2(original_file, backup_file)
+
+        print(f"Backup created successfully: {backup_file}")
+    except FileNotFoundError:
+        print(f"Error: The file '{original_file}' does not exist.")
+
+
+if __name__ == "__main__":
+
+    if len(sys.argv) != 2:
+        print("Usage: python backup_creator.py <filename>")
+    else:
+        filename = sys.argv[1]
+        create_backup(filename)
